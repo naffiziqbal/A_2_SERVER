@@ -4,6 +4,11 @@ import User from "../schema/user.Schema"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcryptjs"
 
+
+//* =======================================>
+//! USER  AREA ========================>
+//* =======================================>
+
 const createUser = async (userData: IUser) => {
 
     // ? Checking if Email Is Already In Use
@@ -48,7 +53,7 @@ const getUser = async (_id: string) => {
 
 const createNewAdmin = async (email: string) => {
     const admin = await User.findOneAndUpdate({ email }, { role: "admin" })
-    console.log(admin)
+    // console.log(admin)
     return admin
 }
 

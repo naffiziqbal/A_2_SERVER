@@ -1,6 +1,12 @@
+
 import { Router } from "express";
 import { UserController } from "../controllers/user.controller";
 import { JWT } from "../../middleware/jwtVerification";
+
+
+//* =======================================>
+//! USER  AREA ========================>
+//* =======================================>
 
 const router = Router()
 

@@ -1,7 +1,12 @@
+
+
+
 import { RequestHandler } from "express";
 import { UserServices } from "../services/user.services";
 
-
+//* =======================================>
+//! USER  AREA ========================>
+//* =======================================>
 const createUser: RequestHandler = async (req, res) => {
     const { name, email, password, role } = req.body;
 

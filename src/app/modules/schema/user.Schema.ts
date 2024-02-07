@@ -2,6 +2,10 @@ import { Schema, model } from "mongoose";
 import { IUser } from "../../types/types";
 import bcrypt from "bcryptjs"
 
+//* =======================================>
+//! USER  AREA ========================>
+//* =======================================>
+
 const userSchema = new Schema<IUser>({
     name: {
         type: String,
