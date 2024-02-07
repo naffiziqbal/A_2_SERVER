@@ -8,6 +8,7 @@ const router = Router()
 router.post("/create", UserController.createUser)
 router.post("/login", UserController.loginUser)
 router.get("/:id", JWT.verifyToken, UserController.getUser)
+router.patch("/create-admin", UserController.createAdmin)
 
 
 

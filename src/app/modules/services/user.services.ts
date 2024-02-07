@@ -46,4 +46,10 @@ const getUser = async (_id: string) => {
     return user
 }
 
-export const UserServices = { createUser, loginUser, getUser }
+const createNewAdmin = async (email: string) => {
+    const admin = await User.findOneAndUpdate({ email }, { role: "admin" })
+    console.log(admin)
+    return admin
+}
+
+export const UserServices = { createUser, loginUser, getUser, createNewAdmin }

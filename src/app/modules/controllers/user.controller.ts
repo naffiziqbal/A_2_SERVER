@@ -67,4 +67,23 @@ const getUser: RequestHandler = async (req, res) => {
     }
 }
 
-export const UserController = { createUser, loginUser, getUser }
+const createAdmin: RequestHandler = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await UserServices.createNewAdmin(email)
+        console.log(user)
+        if (user!._id) {
+            res.send({
+                success: true,
+                message: "New Admin Created Successfully"
+            })
+        }
+        else {
+            throw new Error("User not found")
+        }
+    } catch (err: any) {
+        res.status(400).json({ error: err.message })
+    }
+
+}
+export const UserController = { createUser, loginUser, getUser, createAdmin }
