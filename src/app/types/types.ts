@@ -17,3 +17,11 @@ export interface ICAMPAIGN {
     image: string,
     creatorId: string
 }
+
+export interface IDonation {
+    donatorName: string
+    donatorId: string
+    donationAmount: number
+    campaignTitle: string
+    campaignId: string
+}
