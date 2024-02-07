@@ -48,10 +48,10 @@ const loginUser: RequestHandler = async (req, res) => {
 
 const getUser: RequestHandler = async (req, res) => {
     const _id = req.params.id;
-    console.log(_id)
+    // console.log(_id)
     try {
         const user = await UserServices.getUser(_id)
-        console.log(user, "User")
+        // console.log(user, "User")
         if (user._id) {
             res.status(200).json({
                 success: true,
