@@ -25,6 +25,11 @@ const getDonationByCampaign = async (campaignId: string) => {
     console.log(data)
     return data
 }
+const getDonationByUser = async (donatorId: string) => {
+    const data = await Donation.find({ donatorId })
+    console.log(data)
+    return data
+}
 
 
-export const DonationServices = { createDonation, getAllDonation, getDonationByCampaign }
+export const DonationServices = { createDonation, getAllDonation, getDonationByCampaign, getDonationByUser }
