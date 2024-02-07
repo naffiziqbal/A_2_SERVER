@@ -12,5 +12,12 @@ const createCampaign = async (campaign: ICAMPAIGN) => {
     throw new Error("Campaign Creation Failed")
 }
 
+const getAllCampaign = async (skip: any, limit: any) => {
+    const data = await Campaign.find({})
+        .skip(skip)
+        .limit(limit)
+    return data
+}
 
-export const CampaignServices = { createCampaign }
+
+export const CampaignServices = { createCampaign, getAllCampaign }
