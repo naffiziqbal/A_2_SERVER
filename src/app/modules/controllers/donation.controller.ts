@@ -8,8 +8,7 @@ import { DonationServices } from "../services/donation.services";
 
 const createDonation: RequestHandler = async (req, res) => {
     const donation = req.body;
-    // const id = req.params.id
-    // console.log(donation)
+    console.log(donation)
 
     try {
         const data = await DonationServices.createDonation(donation)
@@ -27,5 +26,21 @@ const createDonation: RequestHandler = async (req, res) => {
 
 }
 
+const getAllDonation: RequestHandler = async (req, res) => {
+    try {
+        const data = await DonationServices.getAllDonation()
+        res.status(200).json({
+            data,
+            success: true,
+        })
+    } catch (error) {
+        res.status(400).json({
+            error: "No Data Found"
+        })
+    }
+}
 
-export const DonationController = { createDonation }
+
+
+
+export const DonationController = { createDonation, getAllDonation }

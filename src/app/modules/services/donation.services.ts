@@ -7,19 +7,17 @@ import Donation from "../schema/donation.Schema"
 
 
 const createDonation = async (donation: IDonation) => {
-    const existingDonation = await Donation.findOne({ campaignId: donation.campaignId })
-    console.log(existingDonation, "Existing Donation")
-    
-    if (!existingDonation) {
-        const data = await Donation.create(donation)
-        return data
-    } else {
-        const data = await Donation.findOneAndUpdate({ campaignId: donation.campaignId },
-            { $inc: { donationAmount: donation.donationAmount } }
-        )
+    const data = await Donation.create(donation)
+    if (data._id) {
         return data
     }
-
+    throw new Error("Something Went Wrong")
 }
 
-export const DonationServices = { createDonation }
+
+const getAllDonation = async () => {
+    const data = await Donation.find({})
+    return data
+}
+
+export const DonationServices = { createDonation, getAllDonation }
