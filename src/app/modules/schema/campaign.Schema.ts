@@ -12,7 +12,9 @@ const campaignSchema = new Schema<ICAMPAIGN>({
     title: { type: String, required: true },
     amount: { type: Number, required: true },
     description: { type: String, required: true },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    category: { type: String, required: true },
+
 
 })
 

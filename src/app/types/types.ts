@@ -16,6 +16,8 @@ export interface ICAMPAIGN {
     amount: number,
     image: string,
     creatorId: string
+    category: string
+
 }
 
 export interface IDonation {
@@ -23,5 +25,5 @@ export interface IDonation {
     donatorId: string
     donationAmount: number
     campaignTitle: string
-    campaignId: string
+    campaignId: string,
 }
