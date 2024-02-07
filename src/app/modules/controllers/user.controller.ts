@@ -46,4 +46,25 @@ const loginUser: RequestHandler = async (req, res) => {
 
 
 
-export const UserController = { createUser, loginUser }
+const getUser: RequestHandler = async (req, res) => {
+    const _id = req.params.id;
+    console.log(_id)
+    try {
+        const user = await UserServices.getUser(_id)
+        console.log(user, "User")
+        if (user._id) {
+            res.status(200).json({
+                success: true,
+                user
+            })
+        }
+        else {
+            throw new Error("User not found")
+        }
+
+    } catch (err: any) {
+        res.status(400).json({ error: err.message })
+    }
+}
+
+export const UserController = { createUser, loginUser, getUser }

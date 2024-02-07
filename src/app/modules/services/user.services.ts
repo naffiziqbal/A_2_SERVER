@@ -39,4 +39,11 @@ const loginUser = async (userData: IUserLogin) => {
 }
 
 
-export const UserServices = { createUser, loginUser }
+const getUser = async (_id: string) => {
+    const user = await User.findOne({ _id })
+    if (!user) throw new Error("User not found")
+    console.log(user)
+    return user
+}
+
+export const UserServices = { createUser, loginUser, getUser }
