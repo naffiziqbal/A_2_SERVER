@@ -9,6 +9,9 @@ const main = async () => {
 
     try {
         await mongoose.connect(config.database as string);
+        app.get("/api/v1/", (req, res) =>{
+            res.send("Server is Online")
+        })
         app.listen(port, () => {
             console.log(`Server is running on port ${port}`)
         })

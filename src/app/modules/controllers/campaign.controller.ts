@@ -70,8 +70,6 @@ const updateCampaign: RequestHandler = async (req, res) => {
         else {
             throw new Error("Campaign update failed")
         }
-
-
     } catch (error: any) {
         res.status(400).json({ error: error.message })
 
