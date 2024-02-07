@@ -41,6 +41,21 @@ const getAllDonation: RequestHandler = async (req, res) => {
 }
 
 
+const getDonationByCampaign: RequestHandler = async (req, res) => {
+    const campaignId = req.body.campaignId
+    console.log(campaignId)
+    try {
+        const data = await DonationServices.getDonationByCampaign(campaignId)
+        console.log(data)
+        res.status(200).json(({
+            data
+        }))
 
+    } catch (error: any) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
+}
 
-export const DonationController = { createDonation, getAllDonation }
+export const DonationController = { createDonation, getAllDonation, getDonationByCampaign }
