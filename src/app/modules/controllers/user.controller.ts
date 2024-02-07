@@ -24,5 +24,26 @@ const createUser: RequestHandler = async (req, res) => {
 }
 
 
+const loginUser: RequestHandler = async (req, res) => {
+    const { email, password } = req.body;
+    const userData = { email, password };
+    try {
+        const user = await UserServices.loginUser(userData)
+        console.log(user)
+        if (user && typeof user === "object" && "user" in user) {
+            res.status(200).json({
+                success: true,
+                data: user,
+                message: "User logged in successfully",
+            });
+        } else {
+            throw new Error("Invalid Credentials")
+        }
+    } catch (err: any) {
+        res.status(400).json({ error: err.message })
+    }
+}
 
-export const UserController = { createUser }
+
+
+export const UserController = { createUser, loginUser }

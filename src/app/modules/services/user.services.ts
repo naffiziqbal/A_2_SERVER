@@ -1,29 +1,42 @@
 import config from "../../../config"
-import { IUser } from "../../types/types"
+import { IUser, IUserLogin } from "../../types/types"
 import User from "../schema/user.Schema"
 import jwt from "jsonwebtoken"
+import bcrypt from "bcryptjs"
 
 const createUser = async (userData: IUser) => {
-    try {
-        // ? Checking if Email Is Already In Use
-        const existing = await User.findOne({ email: userData.email })
-        if (existing) return { error: "User already exists" }
-        // Create user
-        const user = await User.create(userData);
-        if (user._id) {
-            const token = jwt.sign(
-                { id: user._id },
-                config.JWT_SECRET as string,
-                { expiresIn: "1h" },
-            );
-            return { user, token }
-        }
-        return { error: "User not created" }
-    } catch (error) {
-        return error;
+
+    // ? Checking if Email Is Already In Use
+    const existing = await User.findOne({ email: userData.email })
+    if (existing) return { error: "User already exists" }
+    // Create user
+    const user = await User.create(userData);
+    if (user._id) {
+        const token = jwt.sign(
+            { id: user._id },
+            config.JWT_SECRET as string,
+            { expiresIn: "1h" },
+        );
+        return { user, token }
     }
+    return { error: "User not created" }
+
+}
+
+const loginUser = async (userData: IUserLogin) => {
+    // ? Checking If User Available
+    const user = await User.findOne({ email: userData.email })
+    if (!user) return { error: "User not found" }
+
+    //? Matching Password
+    const isMatch = await bcrypt.compare(userData.password, user.password)
+    if (!isMatch) return { error: "Password does not match" }
+
+    //? Assigning Token
+    const token = jwt.sign({ id: user._id }, config.JWT_SECRET as string, { expiresIn: "1h" })
+    return { user, token }
+
 }
 
 
-
-export const UserServices = { createUser }
+export const UserServices = { createUser, loginUser }
