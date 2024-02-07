@@ -36,6 +36,22 @@ const getAllCampaign: RequestHandler = async (req, res) => {
     }
 }
 
+const getSingleCampaign: RequestHandler = async (req, res) => {
+    const _id = req.params.id
+    try {
+        const data = await CampaignServices.getSingleCampaign(_id)
+        if (data._id) {
+            res.status(200).json({
+                data,
+            })
+        }
+        else {
+            throw new Error("No Campaign Found")
+        }
+    } catch (error) {
+
+    }
+}
 
 
-export const CampaignController = { createCampaign, getAllCampaign }
+export const CampaignController = { createCampaign, getAllCampaign, getSingleCampaign }

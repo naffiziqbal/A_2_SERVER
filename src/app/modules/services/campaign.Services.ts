@@ -19,5 +19,10 @@ const getAllCampaign = async (skip: any, limit: any) => {
     return data
 }
 
+const getSingleCampaign = async (_id: string) => {
+    const data = await Campaign.findOne({ _id })
+    if (data?._id) return data
+    throw new Error("No Campaign Found")
+}
 
-export const CampaignServices = { createCampaign, getAllCampaign }
+export const CampaignServices = { createCampaign, getAllCampaign, getSingleCampaign }
