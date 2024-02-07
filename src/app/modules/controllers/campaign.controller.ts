@@ -48,10 +48,34 @@ const getSingleCampaign: RequestHandler = async (req, res) => {
         else {
             throw new Error("No Campaign Found")
         }
-    } catch (error) {
-
+    } catch (error: any) {
+        res.status(400).json({ error: error.message })
     }
 }
 
 
-export const CampaignController = { createCampaign, getAllCampaign, getSingleCampaign }
+const updateCampaign: RequestHandler = async (req, res) => {
+    const { id } = req.params
+    const campaign = req.body
+    try {
+        const data = await CampaignServices.updateCampaign(id, campaign)
+        console.log(data)
+        if (data?._id) {
+            res.status(200).json({
+                success: true,
+                data,
+                message: "Campaign Updated Successfully"
+            })
+        }
+        else {
+            throw new Error("Campaign update failed")
+        }
+
+
+    } catch (error: any) {
+        res.status(400).json({ error: error.message })
+
+    }
+}
+
+export const CampaignController = { createCampaign, getAllCampaign, getSingleCampaign, updateCampaign }

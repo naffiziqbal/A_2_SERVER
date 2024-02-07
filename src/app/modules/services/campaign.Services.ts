@@ -25,4 +25,11 @@ const getSingleCampaign = async (_id: string) => {
     throw new Error("No Campaign Found")
 }
 
-export const CampaignServices = { createCampaign, getAllCampaign, getSingleCampaign }
+
+const updateCampaign = async (id: string, campaign: ICAMPAIGN) => {
+    const data = await Campaign.findOneAndUpdate({ _id: id }, campaign, { new: true })
+    console.log(data)
+    return data
+}
+
+export const CampaignServices = { createCampaign, getAllCampaign, getSingleCampaign, updateCampaign }
