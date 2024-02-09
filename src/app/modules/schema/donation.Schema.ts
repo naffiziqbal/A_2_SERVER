@@ -10,8 +10,8 @@ const donationSchema = new Schema<IDonation>({
     campaignId: { type: String, required: true },
     campaignTitle: { type: String, required: true },
     donationAmount: { type: Number, required: true },
-    donatorId: { type: String, required: true },
-    donatorName: { type: String, required: true }
+    donorId: { type: String, required: true },
+    donorName: { type: String, required: true }
 })
 
 

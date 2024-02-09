@@ -8,7 +8,7 @@ import { DonationServices } from "../services/donation.services";
 
 const createDonation: RequestHandler = async (req, res) => {
     const donation = req.body;
-    console.log(donation)
+    console.log(donation, " donation")
 
     try {
         const data = await DonationServices.createDonation(donation)

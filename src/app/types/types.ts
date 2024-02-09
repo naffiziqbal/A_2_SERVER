@@ -21,8 +21,8 @@ export interface ICAMPAIGN {
 }
 
 export interface IDonation {
-    donatorName: string
-    donatorId: string
+    donorName: string
+    donorId: string
     donationAmount: number
     campaignTitle: string
     campaignId: string,
