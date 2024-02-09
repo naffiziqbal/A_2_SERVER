@@ -42,8 +42,8 @@ const getAllDonation: RequestHandler = async (req, res) => {
 
 
 const getDonationByCampaign: RequestHandler = async (req, res) => {
-    const campaignId = req.body.campaignId
-    console.log(campaignId)
+    const campaignId = req.params.id
+    // console.log(campaignId)
     try {
         const data = await DonationServices.getDonationByCampaign(campaignId)
         console.log(data)
